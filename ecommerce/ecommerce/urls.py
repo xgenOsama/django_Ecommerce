@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^orders/$', 'orders.views.orders', name='user_orders'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/logout/$','accounts.views.logout_view', name='auth_logout'),
+    url(r'^accounts/login/$','accounts.views.login_view', name='auth_login'),
 ]
 
 if settings.DEBUG:
