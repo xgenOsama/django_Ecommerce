@@ -27,6 +27,7 @@
                         {{ request.session.items_total }}{% endif %}</span></a></li>
                 {% if user.is_authenticated %}
                     <li><a href="#">Account</a></li>
+                    <li><a href="{% url 'auth_logout' %}">logout</a></li>
                 {% endif %}
             </ul>
         </div>

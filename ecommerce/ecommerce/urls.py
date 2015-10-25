@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^cart/(?P<slug>[\w-]+)/$', 'carts.views.add_to_cart', name='add_to_cart'),
     url(r'^orders/$', 'orders.views.orders', name='user_orders'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/logout/$','accounts.views.logout_view', name='auth_logout'),
 ]
 
 if settings.DEBUG:

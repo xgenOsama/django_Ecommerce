@@ -9,7 +9,6 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 def get_or_create_stripe(sender, user, *args, **kwargs):
     try:
         user.userstripe.stripe_id
-        print user.userstripe.stripe_id
     except UserStripe.DoesNotExist:
         customer = stripe.Customer.create(
             email=str(user.email)
