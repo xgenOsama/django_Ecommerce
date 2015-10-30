@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_URL = "HTTP://WWW.EXAMPLE.COM"
+if DEBUG:
+    SITE_URL = "http://localhost:8000"
+
+
 DEFAULT_FROM_EMAIL = "somemail@gmail.com"
 try:
     from .email_settings import host, user, password
