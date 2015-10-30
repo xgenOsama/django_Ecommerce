@@ -1,0 +1,9 @@
+Hello, {{ user }}
+
+please activate your account here
+
+{{ activation_url }}
+
+Thank you
+
+-CFE

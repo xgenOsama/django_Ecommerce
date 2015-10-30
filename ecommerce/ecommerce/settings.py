@@ -27,7 +27,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+DEFAULT_FROM_EMAIL = "somemail@gmail.com"
+try:
+    from .email_settings import host, user, password
 
+    EMAIL_HOST = host  # sendgrid.net
+    EMAIL_HOST_USER = user
+    EMAIL_HOST_PASSWORD = password
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+except:
+    pass
 # Application definition
 
 INSTALLED_APPS = (

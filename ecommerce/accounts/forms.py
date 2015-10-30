@@ -33,6 +33,7 @@ class LoginForm(forms.Form):
 
 
 class RegistrationForm(forms.ModelForm):
+    email = forms.EmailField(label='Your email')
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput())
     password2 = forms.CharField(label='Password Confirmation', widget=forms.PasswordInput())
 
@@ -50,16 +51,15 @@ class RegistrationForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        try:
-            user = User.objects.get(email=email)
-        except:
-            raise forms.ValidationError("the email is already exists in the system")
-
+        user_count = User.objects.filter(email=email).count()
+        if user_count > 0:
+            raise forms.ValidationError('This email is already registered in the system please reset your password')
         return email
 
     def save(self, commit=True):
-        user = super(RegistrationForm).save(commit=False)
-        user.setpassword(self.clean_data['password1'])
+        user = super(RegistrationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data['password1'])
+        user.email = self.cleaned_data['email']
         if commit:
             user.save
         return user

@@ -23,11 +23,15 @@ def checkout(request):
         return HttpResponseRedirect(reverse('cart'))
     try:
         new_order = Order.objects.get(cart=cart)
+        new_order.cart = cart
+        new_order.user = request.user
+        new_order.save()
     except Order.DoesNotExist:
         new_order = Order()
         new_order.cart = cart
         new_order.user = request.user
         new_order.order_id = id_generator()
+        new_order.save()
     except:
         # we should work on error message here
         return HttpResponseRedirect(reverse('cart'))
