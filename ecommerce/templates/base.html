@@ -36,8 +36,8 @@
         .alert-top-message {
             margin-bottom: 0px;
             text-align: center;
-            display: none;
-            background-color: #60b3c2;
+            opacity: 0.4;
+            background-color:lightseagreen ;
             color: azure;
         }
 
@@ -48,14 +48,16 @@
 </head>
 
 <body>
-
-<div class="alert  alert-top-message alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-    </button>
-    <div class="container">
-        <h3>Hello there</h3>
+{% if request.session.marketing_message %}
+    <div class="alert  alert-top-message alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span>
+        </button>
+        <div class="container">
+            <h3>{{ request.session.marketing_message|safe }}</h3>
+        </div>
     </div>
-</div>
+{% endif %}
 {% include "navbar.html" %}
 
 
@@ -89,6 +91,8 @@
 <!-- /container -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
+<script type="text/javascript">
+    content = $('.alert-top-message').delay(5000).slideUp(1500)
+</script>
 </body>
 </html>

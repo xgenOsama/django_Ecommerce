@@ -31,7 +31,6 @@ SITE_URL = "HTTP://WWW.EXAMPLE.COM"
 if DEBUG:
     SITE_URL = "http://localhost:8000"
 
-
 DEFAULT_FROM_EMAIL = "somemail@gmail.com"
 try:
     from .email_settings import host, user, password
@@ -46,6 +45,7 @@ except:
 # Application definition
 
 INSTALLED_APPS = (
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +55,8 @@ INSTALLED_APPS = (
     'products',
     'carts',
     'orders',
-    'accounts'
+    'accounts',
+    'marketing',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -67,6 +68,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'marketing.middleware.displayMarketing',
 )
 
 ROOT_URLCONF = 'ecommerce.urls'
@@ -81,6 +83,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                'django.core.context_processors.request',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',

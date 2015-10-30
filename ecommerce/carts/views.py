@@ -4,8 +4,8 @@ from products.models import Product, Variation
 from .models import Cart, CartItem
 
 
-
 def view(request):
+    request.session.set_expiry(360000)
     try:
         the_id = request.session['cart_id']
     except:
@@ -62,7 +62,7 @@ def add_to_cart(request, slug):
         pass
     product_var = []  # product_variation
     if request.method == 'POST':
-        qty = request.POST['qty'] 
+        qty = request.POST['qty']
         for item in request.POST:
             key = item
             val = request.POST[key]

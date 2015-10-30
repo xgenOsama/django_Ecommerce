@@ -22,7 +22,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'products' %}">Products</a></li>
-                <li><a href="{% url 'cart' %}">Cart <span style="background:#eb9722" class="badge">
+                <li><a href="{% url 'cart' %}">Cart <span style="background:#2ec27e" class="badge">
                     {% if not request.session.items_total %} 0 {% else %}
                         {{ request.session.items_total }}{% endif %}</span></a></li>
                 {% if user.is_authenticated %}

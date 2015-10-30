@@ -1,3 +1,3 @@
 host = "smtp.gmail.com"
-user = "xgen.osama@gmail.com"
-password = "javag33kprohunter"
+user = "xgen.test00@gmail.com"
+password = "osamamohamed"

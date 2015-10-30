@@ -1,0 +1,36 @@
+{% extends "admin/base.html" %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% block title %}{{ title }} | {% trans 'Xgen Ecommerce' %}{% endblock %}
+
+{% block branding %}
+    <link href="{% static 'favicon.ico' %}" rel="icon">
+
+    <style type="text/css">
+        #header {
+            /* your style here */
+        }
+    </style>
+    <h1 id="site-name">{% trans 'Xgen Ecommerce' %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block footer %}
+      <div id="footer" class="footer">
+    <div class="content">
+      <div class="tools">
+
+          <a href="http://djangosuit.com/support/" target="_blank" class="icon"><i class="icon-question-sign"></i>Support</a>
+          <a href="http://djangosuit.com/pricing/" target="_blank" class="icon"><i class="icon-bookmark"></i>Licence</a>
+          <a href="http://github.com/darklow/django-suit/issues" target="_blank" class="icon"><i class="icon-comment"></i>Report a bug</a>
+      </div>
+      <div class="copyright">
+          Copyright &copy; 2015 xgen.com<br>Developed by <a href="http://www.facebook.com/xgen.osama" target="_blank">xgen.com</a>
+      </div>
+      <div class="branding">
+            Xgen osama
+      </div>
+    </div>
+  </div>
+{% endblock %}

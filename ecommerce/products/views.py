@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import Http404
+from marketing.models import MarketingMessage
 from .models import Product, ProductImage
 
 
@@ -21,13 +22,20 @@ def search(request):
 
 
 def home(request):
+    try:
+        request.session['marketing_message'] = MarketingMessage.objects.get_featured_item().message
+    except:
+        request.session['marketing_message'] = False
     products = Product.objects.all()
-    context = {'products': products}
+    context = {
+        'products': products
+    }
     template = 'products/home.html'
     return render(request, template, context)
 
 
 def all(request):
+    request.session['marketing_message'] = False
     products = Product.objects.all()
     context = {'products': products}
     template = 'products/all.html'
