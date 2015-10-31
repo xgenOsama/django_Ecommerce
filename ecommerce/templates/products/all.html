@@ -26,7 +26,7 @@
     <!-- Main component for a primary marketing message or call to action -->
     <div class="row">
         {% for product in products %}
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <div class="thumbnail">
                     {% if product.productimage_set.all %}
                         {% for image in product.productimage_set.all %}
@@ -46,12 +46,27 @@
 
                         <p>{{ product.description|truncatewords:15 }}</p>
 
-                        <p><a href="{{ product.get_absolute_url }}" class="btn btn-primary" role="button">View</a> <a
+                        <p><a href="{{ product.get_absolute_url }}" class="btn btn-primary" role="button">View</a>
                         </p>
                     </div>
                 </div>
             </div>
-            {% cycle "" "" "" "" "" "</div><br/><hr><div class='row'>" %}
+            {% cycle "" ""  "" "" "</div><br/><hr><div class='row'>" %}
         {% endfor %}
     </div>
+    <div class="pagination">
+    <span class="step-links">
+        {% if products.has_previous %}
+            <a href="?page={{ products.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ products.number }} of {{ products.paginator.num_pages }}.
+        </span>
+
+        {% if products.has_next %}
+            <a href="?page={{ products.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
 {% endblock %}

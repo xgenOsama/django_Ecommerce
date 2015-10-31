@@ -28,6 +28,8 @@ urlpatterns = [
     url(r'^cart/(?P<id>\d+)/$', 'carts.views.remove_from_cart', name='remove_from_cart'),
     url(r'^cart/(?P<slug>[\w-]+)/$', 'carts.views.add_to_cart', name='add_to_cart'),
     url(r'^orders/$', 'orders.views.orders', name='user_orders'),
+    url(r'^ajax/dismiss_marketing_message/$', 'marketing.views.dismiss_marketing_message',
+        name='dismiss_marketing_message'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/logout/$', 'accounts.views.logout_view', name='auth_logout'),
     url(r'^accounts/login/$', 'accounts.views.login_view', name='auth_login'),

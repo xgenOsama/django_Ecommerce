@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import Http404
 from marketing.models import MarketingMessage
 from .models import Product, ProductImage
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -36,7 +37,17 @@ def home(request):
 
 def all(request):
     request.session['marketing_message'] = False
-    products = Product.objects.all()
+    products_list = Product.objects.all()
+    paginator = Paginator(products_list, 4)  # Show 4 contacts per page
+    page = request.GET.get('page')
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        products = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        products = paginator.page(paginator.num_pages)
     context = {'products': products}
     template = 'products/all.html'
     return render(request, template, context)
