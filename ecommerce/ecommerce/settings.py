@@ -43,6 +43,8 @@ try:
 except:
     pass
 # Application definition
+MARKETING_SECONDS_OFFSET = 8
+
 
 INSTALLED_APPS = (
     'suit',
