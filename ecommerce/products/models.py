@@ -70,3 +70,18 @@ class Variation(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class Revisions(models.Model):
+    product = models.ForeignKey(Product)
+    title = models.CharField(max_length=120, null=False, blank=False)
+    description = models.TextField(null=True, blank=True)
+    price = models.DecimalField(decimal_places=2, max_digits=100, default=29.99)
+    sale_price = models.DecimalField(decimal_places=2, max_digits=100, null=True, blank=True)
+    slug = models.SlugField()
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False, null=True)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True, null=True)
+    active = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return self.title
